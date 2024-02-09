@@ -25,11 +25,13 @@ int hashit(std::string str) {
 		return 3;
 	else if (stringCheck(str, "Save"))
 		return 4;
+	else if (stringCheck(str, "Show"))
+		return 5;
 	else
 		return 0;
 }
 
-Point2D stringToInt(std::string instr)
+Point2D* stringToInt(std::string instr)
 {
 	const char* str = instr.c_str();
 	double value1 = 0;
@@ -48,7 +50,7 @@ Point2D stringToInt(std::string instr)
 		++str;
 	}
 	
-	Point2D temp = Point2D(value1, value2);
+	Point2D* temp = new Point2D(value1, value2);
 	/*std::vector<Point2D>* vec = new std::vector<Point2D>();*/
 	/*vec->push_back(temp);*/
 	return temp;

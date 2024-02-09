@@ -4,7 +4,7 @@
 
 class Circle {
 public:
-	Point2D center;
+	Point2D* center;
 	double rad;
 
 	Circle();
@@ -12,5 +12,7 @@ public:
 	std::string ToString();
 };
 
-std::string saveCircle(std::vector<Circle>*);
-std::vector<Circle>* CircleCmd(std::vector<Circle>*);
+
+Circle* CircleStrinToInt(std::string);
+std::string saveCircle(std::vector<Circle*>*);
+std::vector<Circle*>* CircleCmd(std::vector<Circle*>*,int);

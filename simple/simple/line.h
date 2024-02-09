@@ -3,5 +3,16 @@
 #include"my_string.h"
 #include"Utils.h"
 
-std::string saveLine(std::vector<Point2D>*);
-std::vector<Point2D>* LineCmd(std::vector<Point2D>*);
+class Line {
+public:
+	Point2D* point;
+	Line();
+	Line(Point2D* point);
+	Line(double, double);
+
+	std::string ToString();
+};
+
+Line* LinestringToInt(std::string);
+std::string saveLine(std::vector<Line*>*);
+std::vector<Line*>* LineCmd(std::vector<Line*>*);

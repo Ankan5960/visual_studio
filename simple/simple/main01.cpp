@@ -4,15 +4,13 @@
 #include"Circle.h"
 #include"my_string.h"
 
-void save(std::string& contentToWrite, std::string& name) {
+void save(std::string& contentToWrite, std::string& name) 
+{
 	std::string temp;
 	std::string folderPath = "C:/Users/ankan/OneDrive/Desktop/textfile";
 	std::string fileName = name + ".txt";
-
 	std::string filePath = folderPath + "/" + fileName;
-
 	std::ofstream outputFile(filePath);
-
 	if (outputFile.is_open()) {
 		std::cout << "Save drawing as < " << filePath << "> :";
 		std::cin >> temp;
@@ -31,14 +29,16 @@ void save(std::string& contentToWrite, std::string& name) {
 
 int main()
 {
-	int flag = 0;
+	int flag = 0,circleCount=0;
 	std::string str;
 	std::string contentToWrite = "";
+	double previous_rad = 0;
 	bool isrunning = true;
 	std::string temp;
 	
-	std::vector<Point2D>* line = new std::vector<Point2D>();
-	std::vector<Circle>* circle = new std::vector<Circle>();
+	Point2D* point = new Point2D();
+	std::vector<Line*>* line = new std::vector<Line*>();
+	std::vector<Circle*>* circle = new std::vector<Circle*>();
 	while (isrunning) {
 		std::cout << "command: ";
 		std::cin >> str;
@@ -46,15 +46,14 @@ int main()
 
 		switch (hashit(str)) {
 		case 1:	
-			flag=1;
 			line=LineCmd(line);
 			contentToWrite += saveLine(line);
 			line->clear();
 			break;
 
 		case 2:	
-			flag = 2;
-			circle=CircleCmd(circle);
+			circle=CircleCmd(circle, circleCount);
+			circleCount++;
 			contentToWrite += saveCircle(circle);
 			circle->clear();
 			break;
@@ -64,19 +63,22 @@ int main()
 			break;
 
 		case 4:
-			if (stringCheck(str, "save")) {
-				std::cout << "Enter File name: ";
-				std::cin >> temp;
-				save(contentToWrite, temp);
-				break;
-			}
+			std::cout << "Enter File name: ";
+			std::cin >> temp;
+			save(contentToWrite, temp);
+			break;
+		
+		case 5:
+			std::cout << contentToWrite;
+			std::cout << std::endl;
 			break;
 
 		default:
 			std::cout << "Worng choice.";
+			std::cout << std::endl;
 			break;
-
 		}
+
 	}
 
 	delete line;
