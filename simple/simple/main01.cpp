@@ -1,27 +1,84 @@
-#include <iostream>
-#include <cmath>
+#include"Utils.h"
+#include"Point2D.h"
+#include"line.h"
+#include"Circle.h"
+#include"my_string.h"
 
-struct point2D {
-	float x;
-	float y;
-};
+void save(std::string& contentToWrite, std::string& name) {
+	std::string temp;
+	std::string folderPath = "C:/Users/ankan/OneDrive/Desktop/textfile";
+	std::string fileName = name + ".txt";
 
-float distanceBetweenPoint(struct point2D a, struct point2D b)
-{
-	float res = ((b.x - a.x) * (b.x - a.x)) + ((b.y - a.y) * (b.y - a.y));
-	return(sqrt(res));
+	std::string filePath = folderPath + "/" + fileName;
+
+	std::ofstream outputFile(filePath);
+
+	if (outputFile.is_open()) {
+		std::cout << "Save drawing as < " << filePath << "> :";
+		std::cin >> temp;
+		if (stringCheck(temp, "yes")) {
+			outputFile << contentToWrite;
+			outputFile.close();
+		}
+		else {
+			std::cout << "wrong command" << std::endl;
+		}
+	}
+	else {
+		std::cerr << "Error opening file for writing." << std::endl;
+	}
 }
 
-void main()
+int main()
 {
-	point2D a;
-	a.x = 5;
-	a.y = 10;
+	int flag = 0;
+	std::string str;
+	std::string contentToWrite = "";
+	bool isrunning = true;
+	std::string temp;
+	
+	std::vector<Point2D>* line = new std::vector<Point2D>();
+	std::vector<Circle>* circle = new std::vector<Circle>();
+	while (isrunning) {
+		std::cout << "command: ";
+		std::cin >> str;
+		std::cout << std::endl;
 
-	point2D b;
-	b.x = 10;
-	b.y = 20;
+		switch (hashit(str)) {
+		case 1:	
+			flag=1;
+			line=LineCmd(line);
+			contentToWrite += saveLine(line);
+			line->clear();
+			break;
 
-	float dis = distanceBetweenPoint(a, b);
-	std::cout << "Distance between (" << a.x << "," << a.y << ")" << " and (" << b.x << "," << b.y << ") = " << dis << std::endl
+		case 2:	
+			flag = 2;
+			circle=CircleCmd(circle);
+			contentToWrite += saveCircle(circle);
+			circle->clear();
+			break;
+
+		case 3:
+			isrunning = false;
+			break;
+
+		case 4:
+			if (stringCheck(str, "save")) {
+				std::cout << "Enter File name: ";
+				std::cin >> temp;
+				save(contentToWrite, temp);
+				break;
+			}
+			break;
+
+		default:
+			std::cout << "Worng choice.";
+			break;
+
+		}
+	}
+
+	delete line;
+	delete circle;
 }

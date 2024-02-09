@@ -19,8 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main00.c" />
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="line.cpp" />
     <ClCompile Include="main01.cpp" />
+    <ClCompile Include="my_string.cpp" />
+    <ClCompile Include="Point2D.cpp" />
+    <ClCompile Include="Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="line.h" />
+    <ClInclude Include="my_string.h" />
+    <ClInclude Include="Point2D.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
