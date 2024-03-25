@@ -1,6 +1,5 @@
 #include"my_string.h"
 
-
 bool stringCheck(std::string str1, std::string str2) {
 	int i = 0;
 	if (str1.length() != str2.length()) {
@@ -51,8 +50,31 @@ Point2D* stringToInt(std::string instr)
 	}
 	
 	Point2D* temp = new Point2D(value1, value2);
-	/*std::vector<Point2D>* vec = new std::vector<Point2D>();*/
-	/*vec->push_back(temp);*/
 	return temp;
+}
 
+Point2D* stringToDouble(std::string instr)
+{
+	int i = 0, j = 0;
+	std::string str1;
+	std::string str2;
+	while (instr[i] && instr[i] != ',') {
+		str1[i] = instr[i];
+		i++;
+	}
+	const char* s1 = str1.c_str();
+	double value1 = std::atof(s1);
+	if (instr[i] == ',') {
+		i++;
+	}
+
+	while (instr[i]) {
+		str2[i] = instr[i];
+		i++;
+	}
+	const char* s2 = str2.c_str();
+	double value2 = std::atof(s2);
+
+	Point2D* temp = new Point2D(value1, value2);
+	return temp;
 }

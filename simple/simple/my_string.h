@@ -5,3 +5,4 @@
 bool stringCheck(std::string str1, std::string str2);
 int hashit(std::string str);
 Point2D* stringToInt(std::string inputString);
+Point2D* stringToDouble(std::string);

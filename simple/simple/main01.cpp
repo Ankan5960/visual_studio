@@ -7,7 +7,7 @@
 void save(std::string& contentToWrite, std::string& name) 
 {
 	std::string temp;
-	std::string folderPath = "C:/Users/ankan/OneDrive/Desktop/textfile";
+	std::string folderPath = "C:/Users/ankan/OneDrive/Documents/vs_simple_data";
 	std::string fileName = name + ".txt";
 	std::string filePath = folderPath + "/" + fileName;
 	std::ofstream outputFile(filePath);
@@ -81,6 +81,7 @@ int main()
 
 	}
 
+	delete point;
 	delete line;
 	delete circle;
 }
